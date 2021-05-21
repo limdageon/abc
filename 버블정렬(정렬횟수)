@@ -1,0 +1,47 @@
+#include<iostream>
+using namespace std;
+
+int arrcorrect(int *a, int num) //정렬 잘되었는지 판독하는 함수
+{
+	int k;
+	for (k = 1; k < num; k++)
+	{
+		if (a[k] > a[k + 1]) //정렬이 잘 안되어있다면 0 반환
+			return 0;
+	}
+
+	return 1; //잘 되었다면 1반환
+}
+
+
+int main()
+{
+	int arr[1001] = { 0, }, n;
+
+	cin >> n;
+
+	int i, j,temp, step;
+	for (i = 1; i <= n; i++) //배열 값 순차 입력
+		cin >> arr[i];
+
+	for (step = 1; step < n; step++) //1단계정렬~n-1단계 까지 반복
+	{
+		for (j = 1; j < n; j++) 
+		{
+			if (arr[j] > arr[j + 1]) //버블함수 식으로 큰 수를 뒤로 보냄
+			{
+				temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+
+		if (arrcorrect(arr, n) == 1) //정렬이 잘되었다면 그 단계를 출력
+		{
+			cout << step;
+		}
+	
+	}
+
+	
+}
